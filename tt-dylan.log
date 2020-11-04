@@ -1,0 +1,78 @@
+..... Main
+..... receive target {8101, False, "The answer, my friend, is blowing in the wind."}
+..... receive try {8101, False, 2000, 46, 80, 2, 0}
+..... GeneticAlgorithm {8101, False, 2000, 46, 80, 2, 0}
+===== 0 42
+T@$JChAhYrF;umvaeaqv9[FJP7aa|+X@m nW*(YPuiMnGj
+===== 1 41
+1+e~S{so9U)iAX USy#iT~dMsg5Q0`S;eb2=};iCq|G'!.
+===== 3 40
+}P9 j-(DgfGX3GIfo7 V`g!w{]hg3mdn.7in..!p]'i8GL
+===== 6 38
+Hoe~S{so9U)iAX USy#iT~dMsg0-amdn.7in..!p]'i8GL
+===== 7 37
+Hoe~S{so9U)iAX USy#iT~dMsg0-amdn.7inW4.z X>#dP
+===== 11 36
+1+e~Sk`KR./HDytfwiZX><z0s}txE@7 gS3<7tOM'w+nx.
+===== 12 35
+T@$JLnXw!r5y'U PxiU= 9 9(d@.Cw?E_3InW4.z X>#dj
+===== 13 34
+1+e~8nso0rL$a|wGrY}nz,u!RnhPM}dn.7ikGY1$ wi9pm
+===== 15 33
+TQ:?a<swA8sHDytfwiZX><z0s}txE@7 gS3<7tOM'w+nx.
+===== 16 32
+T@$JLnXw!rF;umvaejFnd, 9(d@.=wNIWS1n.tOM'w+nx.
+===== 17 31
+TQ:?a<swA8sHDytfwiFnd, PYb?d]V*gg[in.z~B,>+nL+
+===== 19 30
+TQ' pntU)r/(m> BLnpnz, 9sm^u0p;ug}in..!p >+nx.
+===== 22 28
+1+e~S{sw!r5HDyuYridnz, 9< ^u02qni in..!p >+nx.
+===== 26 27
+vhf an9YerPpmtuYri#nd, 9(d@.=rdn.7inW4.z w?K%.
+===== 28 25
+Thf qwsw!8RZmtuYr?}nz, 9stolowx2w 1n ^Z1 wsnd5
+===== 29 24
+T@$!nnswArp@mE U<3Fnd, 9(dolowx2w 1n ^Z1 wsnd.
+===== 34 22
+T+e~a$o.ert3mytfwiFnd, 9(dolowdn.7i<.tO| w+nd.
+===== 35 21
+TQ' pnswsr (mE Yrnpnz, Wsm3lowdng[in.zxe|wi4d.
+===== 37 20
+T@e~answe"PpmU 'riZnz, -s=E6owin[ in..!p >+nd.
+===== 40 19
+The2anXwsrf@mE Yridnd, 9smolocOPg7in ^Z1 wi9d.
+===== 41 18
+The2anXwsrf@mE UriFnd, 9sdolowdn.7i<7tOz wind.
+===== 44 17
+Thf answArpHm> YriZnd, }b 53oDNni in KZ1 wind.
+===== 46 15
+The2answ)r/(mytfrienz, 9s=E6owin[}in tO1 w+nd.
+===== 50 14
+T+e Lnswer",myJUriFnd, 9st0lowdng[in t~$ wind.
+===== 52 13
+T+e~answ!r"smy friVnd, 9s kloB8n[ in tOM wind.
+===== 55 12
+The~answeYFsmy friVnd, 9s kloB8n[ in tOe w+nd.
+===== 56 11
+The Lnswer",my friFnd, 9st0lowdng[in t~$ wind.
+===== 62 10
+The~answerPpmy YriFnd, 9s kloB8ng in tOe wind.
+===== 63 9
+The~answer"pmy friZnd, 9sdQlowing in tOM wind.
+===== 64 8
+The~answer"pmy friVnd, is oloDing in tEz wind.
+===== 67 7
+The answerL@mytfriend, isdolowing in tOe|wind.
+===== 69 6
+T+e answerP@my friend, isdolowing in tOe wind.
+===== 73 4
+The answer"pmy friend, is olowing in tZe wind.
+===== 78 3
+The answerL my friend, is @lowing in t~e wind.
+===== 87 2
+The answerP my friend, is blowing in tOe wind.
+===== 172 1
+The answerP my friend, is blowing in the wind.
+===== 305 0
+The answer, my friend, is blowing in the wind.

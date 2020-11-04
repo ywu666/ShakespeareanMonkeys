@@ -1,0 +1,12 @@
+Start and run, in this order:
+
+Fitness
+
+Monkeys
+
+Client on port
+
+Client on port'
+
+pause
+

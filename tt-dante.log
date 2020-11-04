@@ -1,0 +1,64 @@
+..... Main
+..... receive target {8101, False, "Lasciate ogni speranza, voi ch'entrate."}
+..... receive try {8101, False, 2000, 39, 80, 2, 0}
+..... GeneticAlgorithm {8101, False, 2000, 39, 80, 2, 0}
+===== 0 35
+8cfa S<EdzgO-As+Tmgc~gQ %v\)"_|bC.J-Ne}
+===== 3 32
+"as8{K/(Lor)~ O48.$i|(=;'x$ 8"ssnc+_>eU
+===== 5 31
+"as8{K/(+3yIV Xlh4auWE,zEi:+c.h+wtAstJx
+===== 7 30
+"as8{KUe':gvL=s-nr*P-S(k$56wc.h+wtAstJx
+===== 10 29
+(8DDk)Ue9o6n( O4YaaDz>R_vsHd=P":nt(=x6.
+===== 13 28
+y@NciZte9ou * '|loaDz>RqT]jd=P":nt(=x6.
+===== 14 26
+"as8DaC*r=gnX "!Tnr&zE,q|=KFch'+wtAsbe%
+===== 17 25
+"as8X8>$9o6n( O!loaDz], (AiOc7Dewt(=x6.
+===== 18 24
+ka62%a}e9o6n( O!loaDz], (AiOc7Dewt(=x6.
+===== 20 23
+"as)ia_(LoP^{ "!loaDz>, ]oiOmh'+wtAstJx
+===== 23 22
+Las~id;d oP^{ s+loaDz>R5voj\8h'^Ft+a4e]
+===== 24 21
+Lis~id;d o6n( O4YaaDz>, ]oiOm;PewtNatJ.
+===== 25 20
+Las~id;d oP^{ s+loaDz>, v5iJKh'^Ft+a4e]
+===== 28 19
+Las~id;d oP^{ s+eHaDzn, ]Mn ch'^Ft+a4e]
+===== 29 18
+La6)iZte9o6n( =p>aaDz>, ]oif%h/|ntraqeo
+===== 30 17
+"ascia_(Lo6n? =5+&aDza, ]oK (h/|ntrateJ
+===== 32 16
+L@NciZte9o6n( s+loaDzE,Evo/ ch'^ntraqeo
+===== 34 15
+LasciZte9o6n$ fpE&aDI>, ]oi (h/|ntrateo
+===== 36 14
+LaNciZteLo/n~ ypKraDza, ]oK (h/|ntratJ.
+===== 38 13
+La6)iaUe_ogn( !;eHaDz>, ]oi ch'|ntrate]
+===== 39 12
+Las8iaUe_ogn( !;eHaDz>, ]oi ch'|ntrate=
+===== 42 11
+LaNciato"o6n( s+eHaDzn, ]oi ch'entratJ.
+===== 45 10
+LasciateLo6n$ "pUraDIn,Evoi ch'entratJ.
+===== 48 8
+"asciate o/ni OFEraDza, voj ch'entratJ.
+===== 53 7
+Lasciate o6n( "pUraDza, vo/ ch'entratJ.
+===== 55 6
+Lasciate ogn~ fperauza, voi (h'^ntratex
+===== 56 5
+Lasciate ogn~ fperaDzn, voj ch'entrate.
+===== 60 3
+Lasciate ogni fperaDzE, voi ch'entrate.
+===== 66 1
+Lasciate ogni speranz>, voi ch'entrate.
+===== 73 0
+Lasciate ogni speranza, voi ch'entrate.

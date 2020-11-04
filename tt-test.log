@@ -1,0 +1,12 @@
+..... Main
+..... receive target {8101, False, "abcd"}
+..... receive try {8101, False, 200, 4, 90, 2, 100}
+..... GeneticAlgorithm {8101, False, 200, 4, 90, 2, 100}
+===== 0 3
+ntTd
+===== 2 2
+atTd
+===== 5 1
+abdd
+===== 9 0
+abcd
