@@ -25,7 +25,7 @@ namespace Monkeys {
                 GeneticAlgorithm(treq);
 
                 await Task.Delay (0);
-                return;
+                return ;
             });
         }
         
@@ -40,17 +40,12 @@ namespace Monkeys {
 
             await Task.Delay (0);
             var res = await hrm.Content.ReadAsAsync <AssessResponse> ();
-            WriteLine("res in PostFitnessAssess: " + res.id);
-            foreach(int score in res.scores) {
-                WriteLine("In PostFitnessAssess: " + score);
-            }
-            var ares = new AssessResponse {id = res.id, scores = res.scores};
-            return ares;
+            return res;
         }
         
         async Task PostClientTop (TopRequest treq) {
             var client = new HttpClient();
-            client.BaseAddress = new Uri("http://localhost:8101/");
+            client.BaseAddress = new Uri("http://localhost:" + treq.id + "/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -58,7 +53,7 @@ namespace Monkeys {
             hrm.EnsureSuccessStatusCode();
             
             await Task.Delay (0);
-            return;
+            return ;
         }
         
         private Random _random = new Random (1);
@@ -102,55 +97,49 @@ namespace Monkeys {
             if (limit == 0) limit = 1000;
             var isParallel = treq.parallel;
             
-            if (treq.length == 0) { //dynamic cal length
-                var arr = new[] {""};
-                var res = await PostFitnessAssess(new AssessRequest { id = id, genomes = arr.ToList(), });
+            if (treq.length == 0) { // Dynamic cal length
+                var list = new List<string>() { "" };
+                var res = await PostFitnessAssess(new AssessRequest { id = id, genomes = list, });
                 length = res.scores[0];
-                WriteLine("dynamic detect length: " + length);
             }
     
+            // Create randoms
             currentGeneration = new List<string>();
             currentGeneration = createRandoms(monkeys, length);
-            foreach(string s in currentGeneration) {
-                WriteLine("Random in the currentGeneration: " + s);
-            }
-            string currentBestGenome = currentGeneration[0];
+            
+            string currentBestGenome = currentGeneration[0]; // Randomly choose initially
             string targettxt = currentBestGenome;
 
-            for (int loop = 0; loop < limit; loop ++) { // the evolutaion loop
-                //Get the fitness values from the fitness server
+            for (int loop = 0; loop < limit; loop ++) { // The evolutaion loop
+                // Get the fitness values from the fitness server
                 var res = await PostFitnessAssess(new AssessRequest { id = id, genomes = currentGeneration, });
                 var fs = res.scores;
-                foreach(int f in fs) {
-                    WriteLine("fitness of currentGeneration: " + f);
-                }
 
-                var arr = new[] { currentBestGenome, targettxt };
-                var res2 = await PostFitnessAssess(new AssessRequest {id = id, genomes = arr.ToList(), });
+                currentBestGenome = getCurrentBest(fs);
+
+                // Get the fitness of current best as well as the targettext
+                var list = new List<string>() { currentBestGenome, targettxt };
+                var res2 = await PostFitnessAssess(new AssessRequest {id = id, genomes = list, });
                 var fs2 = res2.scores;
-                WriteLine("currentbest and  best: "  + fs2[0] + " and " + fs2[1]);
-
-                if (fs2[0] < fs2[1]) { //current best < best
-                    WriteLine("==============================");
-                    WriteLine("currentbest < best: "  + fs2[0] + " < " + fs2[1]);
+                
+                if (fs2[0] < fs2[1]) { // current best genome's fitness < best's fitness
                     targettxt = currentBestGenome;
+
+                    // Post the evolutaion string to the clinet
                     await PostClientTop(new TopRequest { id = id, loop = loop, score = fs2[0], genome = targettxt, });
                     
-                    if (fs2[0] == 0) break; //find the target
+                    if (fs2[0] == 0) break; // Find the target and break the loop
                 }
                 
-                //create new generations
-                currentGeneration = createNextGeneration(monkeys, mutation, crossover, fs, isParallel).ToList();
-                currentBestGenome = getCurrentBest(fs);
+                // Create new generations
+                currentGeneration = createNewGeneration(monkeys, mutation, crossover, fs, isParallel);
             }
-
-            WriteLine("targettxt: " + targettxt);
         }
 
-        private List<string> createRandoms(int population, int length) {
-            //random generata string population
+        private List<string> createRandoms(int monkeys, int length) {
             var randoms = new List<string>();
-            for (int i = 0;i < population ; i++) {
+
+            for (int i = 0;i < monkeys; i++) {
                 randoms.Add(createRandom(length));
             }
             return randoms;
@@ -159,29 +148,28 @@ namespace Monkeys {
         private string createRandom(int length) {
             int asciiStart = 32; 
             int asciiEnd = 126; 
-            StringBuilder sb = new StringBuilder();  
+            var sb = new StringBuilder();
+
+            // Generate random string that has the same length as the target  
             for (int i = 0; i < length; i++) {
                 sb.Append((char)(NextInt(asciiStart, asciiEnd + 1) % 255));
             }
+
             return sb.ToString();
         }
 
         private int getSumOfBreedingWeight(int maxFitness, List<int> fs) {
               breedingWeighs = fs.Select ( f => {
                     return (maxFitness - f  + 1);
-                }) .ToList ();
-              var SumOfbreedingWeigh = fs.Sum(f => (maxFitness - f + 1));
-              return SumOfbreedingWeigh;
+                }).ToList();
+              
+              var sumOfBW = fs.Sum(f => (maxFitness - f + 1));
+              return sumOfBW;
         }
 
-
-        private string selectHgihFitParent(int sumOfBW) {
-            var i = ProportionalRandom(breedingWeighs.ToArray(), sumOfBW);
-     
+        private string selectHighFitParent(int sumOfBW) {
+            var i = ProportionalRandom(breedingWeighs.ToArray(), sumOfBW);    
             return currentGeneration[i];
-            
-        
-            //throw new InvalidOperationException("Not to be.");
         }
 
         private string randomChangeOneCha(string c) {
@@ -192,7 +180,7 @@ namespace Monkeys {
             return sb.ToString();
         }
 
-        private string[] createChildren(double mutation, double crossover, string p1, string p2) {
+        private List<string> createTwoChildren(double mutation, double crossover, string p1, string p2) {
             string c1, c2;
             if (NextDouble() < crossover) {
                 int crossoverVal = NextInt(1, p1.Length);
@@ -202,9 +190,8 @@ namespace Monkeys {
                 c1 = p1;
                 c2 = p2;
             }
-
-            //Mutate the children
-            if (NextDouble() <  mutation) {
+            
+            if (NextDouble() < mutation) {
                 c1 = randomChangeOneCha(c1);
             }
             
@@ -212,26 +199,23 @@ namespace Monkeys {
                 c2 = randomChangeOneCha(c2);
             }
 
-            //Return the children
-            return new[] { c1, c2 };
+            return new List<string>() { c1, c2 };
         }
 
-        private string[] createNextGeneration(int population, double mutation, double crossover, List<int> fs, bool isParallel) {
+        private List<string> createNewGeneration(int population, double mutation, double crossover, List<int> fs, bool isParallel) {
             var maxFitness = fs.Max();
             var sumOfBW = getSumOfBreedingWeight(maxFitness, fs);
-            WriteLine("maxFitness: " + maxFitness + "  sum of BW: " + sumOfBW);
-            //create new generations
-            
+                
             if (isParallel) {
                 return (from i in ParallelEnumerable.Range(0, population / 2)
-                        from child in createChildren(mutation, crossover, 
-                            selectHgihFitParent(sumOfBW), selectHgihFitParent(sumOfBW))
-                        select child).ToArray();
+                        from child in createTwoChildren(mutation, crossover, 
+                            selectHighFitParent(sumOfBW), selectHighFitParent(sumOfBW))
+                        select child).ToList();
             } else {
                 return (from i in Enumerable.Range(0, population / 2)
-                    from child in createChildren(mutation, crossover, 
-                        selectHgihFitParent(sumOfBW), selectHgihFitParent(sumOfBW))
-                    select child).ToArray();
+                    from child in createTwoChildren(mutation, crossover, 
+                        selectHighFitParent(sumOfBW), selectHighFitParent(sumOfBW))
+                    select child).ToList();
             }
         }
 
@@ -239,16 +223,7 @@ namespace Monkeys {
             var index = fs.IndexOf(fs.Min());
             return currentGeneration[index];
         }
-    }
-    
-    // public class TargetRequest {
-        // public int id { get; set; }
-        // public bool parallel { get; set; }
-        // public string target { get; set; }
-        // public override string ToString () {
-            // return $"{{{id}, {parallel}, \"{target}\"}}";
-        // }  
-    // }    
+    }   
 
     public class TryRequest {
         public int id { get; set; }
